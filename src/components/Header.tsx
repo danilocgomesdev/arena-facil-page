@@ -4,7 +4,7 @@ import Logo from "../app/assets/logo1.png";
 
 export default function Header() {
   return (
-    <header>
+    <header id="home">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex-1 md:flex md:items-center md:gap-12">
@@ -18,45 +18,23 @@ export default function Header() {
             <nav aria-label="Global" className="hidden md:block">
               <ul className="flex items-center gap-6 text-sm">
                 <li>
-                  <a className="text-orange-500 transition hover:text-orange-500/75" href="#">
-                    {" "}
-                    About{" "}
-                  </a>
+                  <Link
+                    className="text-orange-500 transition hover:text-orange-500/75"
+                    href="#home"
+                  >
+                    Home
+                  </Link>
+                </li>
+                <li>
+                  <Link className="text-orange-500 transition hover:text-orange-500/75" href="#">
+                    Sobre nós
+                  </Link>
                 </li>
 
                 <li>
-                  <a className="text-orange-500 transition hover:text-orange-500/75" href="#">
-                    {" "}
-                    Careers{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a className="text-orange-500 transition hover:text-orange-500/75" href="#">
-                    {" "}
-                    History{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a className="text-orange-500 transition hover:text-orange-500/75" href="#">
-                    {" "}
-                    Services{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a className="text-orange-500 transition hover:text-orange-500/75" href="#">
-                    {" "}
-                    Projects{" "}
-                  </a>
-                </li>
-
-                <li>
-                  <a className="text-orange-500 transition hover:text-orange-500/75" href="#">
-                    {" "}
-                    Blog{" "}
-                  </a>
+                  <Link className="text-orange-500 transition hover:text-orange-500/75" href="#">
+                    Contato
+                  </Link>
                 </li>
               </ul>
             </nav>
