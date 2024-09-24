@@ -1,4 +1,3 @@
-import { useThemeStore } from "@/app/stores/themeStore";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -6,6 +5,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { useThemeStore } from "@/stores/themeStore";
 import { Moon, Sun } from "lucide-react";
 
 export function ModeToggle() {

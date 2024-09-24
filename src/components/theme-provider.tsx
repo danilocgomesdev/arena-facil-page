@@ -1,6 +1,6 @@
 "use client";
-import { useThemeStore } from "@/app/stores/themeStore"; // Atualize o caminho conforme necessário
-import { useEffect } from "react";
+import { useThemeStore } from "@/stores/themeStore";
+import { useEffect, useState } from "react";
 
 type ThemeProviderProps = {
   children: React.ReactNode;
@@ -14,12 +14,18 @@ export function ThemeProvider({
   storageKey = "theme-store",
 }: ThemeProviderProps) {
   const { theme, loadThemeFromStorage } = useThemeStore();
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    loadThemeFromStorage(defaultTheme, storageKey);
+    if (typeof window !== "undefined") {
+      loadThemeFromStorage(defaultTheme, storageKey);
+      setMounted(true);
+    }
   }, [defaultTheme, storageKey, loadThemeFromStorage]);
 
   useEffect(() => {
+    if (!mounted) return;
+
     const root = window.document.documentElement;
     root.classList.remove("light", "dark");
 
@@ -31,7 +37,11 @@ export function ThemeProvider({
     } else {
       root.classList.add(theme);
     }
-  }, [theme]);
+  }, [theme, mounted]);
+
+  if (!mounted) {
+    return null;
+  }
 
   return <>{children}</>;
 }

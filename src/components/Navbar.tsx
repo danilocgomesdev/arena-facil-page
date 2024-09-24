@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/navigation-menu";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
 
-import { useThemeStore } from "@/app/stores/themeStore";
+import { useThemeStore } from "@/stores/themeStore";
 import { Menu } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
