@@ -4,11 +4,15 @@ import {
   NavigationMenuItem,
   NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "@/components/ui/sheet";
 
+import { useThemeStore } from "@/app/stores/themeStore";
 import { Menu } from "lucide-react";
-import { useState } from "react";
-import { LogoIcon } from "./Icons";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react"; // Import useTheme
+import LogoLight from "../app/assets/logo.png"; // Logo for light mode
+import LogoDark from "../app/assets/logo1.png"; // Logo for dark mode
 import { ModeToggle } from "./mode-toggle";
 import { buttonVariants } from "./ui/button";
 
@@ -19,34 +23,35 @@ interface RouteProps {
 
 const routeList: RouteProps[] = [
   {
-    href: "#features",
-    label: "Features",
+    href: "#home",
+    label: "Home",
   },
   {
-    href: "#testimonials",
-    label: "Testimonials",
+    href: "#sobre-nos",
+    label: "Sobre nós",
   },
   {
-    href: "#pricing",
-    label: "Pricing",
-  },
-  {
-    href: "#faq",
-    label: "FAQ",
+    href: "#contato",
+    label: "Contato",
   },
 ];
 
 export const Navbar = () => {
+  const { theme } = useThemeStore();
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
       <NavigationMenu className="mx-auto">
         <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
           <NavigationMenuItem className="font-bold flex">
-            <a rel="noreferrer noopener" href="/" className="ml-2 font-bold text-xl flex">
-              <LogoIcon />
-              ShadcnUI/React
-            </a>
+            <Link rel="noreferrer noopener" href="/" className="ml-2 font-bold text-xl flex">
+              <Image
+                src={theme === "system" ? LogoDark : theme === "dark" ? LogoDark : LogoLight}
+                alt="Arena Fácil"
+                className="sm:w-56 w-40"
+              />
+            </Link>
           </NavigationMenuItem>
 
           {/* mobile */}
@@ -62,11 +67,15 @@ export const Navbar = () => {
 
               <SheetContent side={"left"}>
                 <SheetHeader>
-                  <SheetTitle className="font-bold text-xl">Shadcn/React</SheetTitle>
+                  <Image
+                    src={theme === "system" ? LogoDark : theme === "dark" ? LogoDark : LogoLight}
+                    alt="Arena Fácil"
+                    className="sm:w-56 w-40 justify-center"
+                  />
                 </SheetHeader>
-                <nav className="flex flex-col justify-center items-center gap-2 mt-4">
+                <nav className="flex flex-col justify-center items-center gap-2 mt-4 ">
                   {routeList.map(({ href, label }: RouteProps) => (
-                    <a
+                    <Link
                       rel="noreferrer noopener"
                       key={label}
                       href={href}
@@ -74,18 +83,23 @@ export const Navbar = () => {
                       className={buttonVariants({ variant: "ghost" })}
                     >
                       {label}
-                    </a>
+                    </Link>
                   ))}
-                  <a
-                    rel="noreferrer noopener"
-                    href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-                    target="_blank"
+                  <Link
+                    href="#"
                     className={`w-[110px] border ${buttonVariants({
-                      variant: "secondary",
-                    })}`}
+                      variant: "default",
+                    })} `}
                   >
-                    Github
-                  </a>
+                    Login
+                  </Link>
+                  <Link
+                    rel="noreferrer noopener"
+                    href="#"
+                    className={`border ${buttonVariants({ variant: "ghost" })} w-[110px]`}
+                  >
+                    Registre
+                  </Link>
                 </nav>
               </SheetContent>
             </Sheet>
@@ -94,7 +108,7 @@ export const Navbar = () => {
           {/* desktop */}
           <nav className="hidden md:flex gap-2">
             {routeList.map((route: RouteProps, i) => (
-              <a
+              <Link
                 rel="noreferrer noopener"
                 href={route.href}
                 key={i}
@@ -103,19 +117,25 @@ export const Navbar = () => {
                 })}`}
               >
                 {route.label}
-              </a>
+              </Link>
             ))}
           </nav>
 
           <div className="hidden md:flex gap-2">
-            <a
+            <Link
               rel="noreferrer noopener"
-              href="https://github.com/leoMirandaa/shadcn-landing-page.git"
-              target="_blank"
-              className={`border ${buttonVariants({ variant: "secondary" })}`}
+              href="#"
+              className={`border ${buttonVariants({ variant: "default" })}`}
             >
-              Github
-            </a>
+              Login
+            </Link>
+            <Link
+              rel="noreferrer noopener"
+              href="#"
+              className={`border ${buttonVariants({ variant: "ghost" })}`}
+            >
+              Registre
+            </Link>
 
             <ModeToggle />
           </div>
