@@ -43,7 +43,8 @@ export const Navbar = () => {
   return (
     <header className="sticky border-b-[1px] top-0 z-40 w-full bg-white dark:border-b-slate-700 dark:bg-background">
       <NavigationMenu className="mx-auto">
-        <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between ">
+        <NavigationMenuList className="container h-14 px-4 w-screen flex justify-between">
+          {/* Logo (sempre à esquerda) */}
           <NavigationMenuItem className="font-bold flex">
             <Link rel="noreferrer noopener" href="/" className="ml-2 font-bold text-xl flex">
               <Image
@@ -73,30 +74,30 @@ export const Navbar = () => {
                     className="sm:w-56 w-40 justify-center"
                   />
                 </SheetHeader>
-                <nav className="flex flex-col justify-center items-center gap-2 mt-4 ">
+                <nav className="flex flex-col gap-2 mt-4 w-full">
                   {routeList.map(({ href, label }: RouteProps) => (
                     <Link
                       rel="noreferrer noopener"
                       key={label}
                       href={href}
                       onClick={() => setIsOpen(false)}
-                      className={buttonVariants({ variant: "ghost" })}
+                      className={`${buttonVariants({ variant: "ghost" })} w-full text-center`}
                     >
                       {label}
                     </Link>
                   ))}
                   <Link
                     href="#"
-                    className={`w-[110px] border ${buttonVariants({
+                    className={`w-full border ${buttonVariants({
                       variant: "default",
-                    })} `}
+                    })} text-center`}
                   >
                     Login
                   </Link>
                   <Link
                     rel="noreferrer noopener"
                     href="#"
-                    className={`border ${buttonVariants({ variant: "ghost" })} w-[110px]`}
+                    className={`border ${buttonVariants({ variant: "ghost" })} w-full text-center`}
                   >
                     Registre
                   </Link>
@@ -106,7 +107,7 @@ export const Navbar = () => {
           </span>
 
           {/* desktop */}
-          <nav className="hidden md:flex gap-2">
+          <nav className="hidden md:flex gap-2 items-center ml-auto">
             {routeList.map((route: RouteProps, i) => (
               <Link
                 rel="noreferrer noopener"
@@ -119,13 +120,10 @@ export const Navbar = () => {
                 {route.label}
               </Link>
             ))}
-          </nav>
-
-          <div className="hidden md:flex gap-2">
             <Link
               rel="noreferrer noopener"
               href="#"
-              className={`border ${buttonVariants({ variant: "default" })}`}
+              className={`border ${buttonVariants({ variant: "default" })} ml-4`}
             >
               Login
             </Link>
@@ -136,9 +134,8 @@ export const Navbar = () => {
             >
               Registre
             </Link>
-
             <ModeToggle />
-          </div>
+          </nav>
         </NavigationMenuList>
       </NavigationMenu>
     </header>
