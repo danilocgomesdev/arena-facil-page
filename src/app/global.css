@@ -68,6 +68,10 @@
 } */
 
 /* *=========== Green theme =========== */
+/*
+laranja: rgba (253, 101, 0, 1) ou #fd6500
+azul: rgba (4, 24,80, 1) ou #041850
+*/
 @layer base {
   :root {
     --background: 0 0% 100%;

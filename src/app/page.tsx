@@ -2,5 +2,5 @@
 import "./global.css";
 
 export default function Home() {
-  return <>Ola</>;
+  return <>Ola Ola Ola</>;
 }

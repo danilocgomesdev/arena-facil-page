@@ -1,4 +1,6 @@
+import { Footer } from "@/components/Footer";
 import { Navbar } from "@/components/Navbar";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { ThemeProvider } from "@/components/theme-provider";
 
 export const metadata = {
@@ -11,8 +13,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt">
       <body>
         <ThemeProvider>
-          <Navbar />
-          {children}
+          <div className="flex flex-col min-h-screen">
+            <Navbar />
+            <main className="flex-grow">{children}</main>
+            <Footer />
+            <ScrollToTop />
+          </div>
         </ThemeProvider>
       </body>
     </html>
