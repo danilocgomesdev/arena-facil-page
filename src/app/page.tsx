@@ -1,11 +1,6 @@
 "use client";
-import { Navbar } from "@/components/Navbar";
-import { ThemeProvider } from "@/components/theme-provider";
+import "./global.css";
 
 export default function Home() {
-  return (
-    <ThemeProvider>
-      <Navbar />
-    </ThemeProvider>
-  );
+  return <>Ola</>;
 }
