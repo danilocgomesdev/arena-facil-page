@@ -1,6 +1,10 @@
-"use client";
+import { Hero } from "@/components/Hero";
 import "./global.css";
 
 export default function Home() {
-  return <>Ola Ola Ola</>;
+  return (
+    <div>
+      <Hero />
+    </div>
+  );
 }
